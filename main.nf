@@ -64,7 +64,7 @@ process blast {
     which aws
     aws --version
     echo "--------------------------------"
-    sleep 300s
+    sleep 300
     """
 }
 
@@ -82,7 +82,7 @@ process extract {
 
     """
     blastdbcmd -db $db/$db_name -entry_batch top_hits | head -n 10 > sequences
-    sleep 300s
+    sleep 300
     """
 }
 
