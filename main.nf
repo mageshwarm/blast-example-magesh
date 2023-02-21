@@ -47,15 +47,14 @@ Channel
 
 Channel.from(1,2,3).set {check_aws}
 process check_aws_version {
-
+  echo "true"
  input:
  val x from check_aws
    script:
    """
-    echo "--------------------------------"
-    which aws
+    echo "hello --------------------------------"
     aws --version
-    echo "--------------------------------"
+    echo " test--------------------------------"
     sleep 300
    """
 }
@@ -77,11 +76,6 @@ process blast {
     """
     blastp -db $db/$db_name -query query.fa -outfmt 6 > blast_result
     cat blast_result | head -n 10 | cut -f 2 > top_hits
-    echo "--------------------------------"
-    which aws
-    aws --version
-    echo "--------------------------------"
-    sleep 300
     """
 }
 
