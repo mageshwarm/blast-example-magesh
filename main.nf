@@ -44,6 +44,23 @@ Channel
     .splitFasta(by: params.chunkSize, file:true)
     .set { fasta_ch }
 
+
+Channel.from(1,2,3).set {check_aws}
+process check_aws_version {
+
+ input:
+ val x from check_aws
+   script:
+   """
+    echo "--------------------------------"
+    which aws
+    aws --version
+    echo "--------------------------------"
+    sleep 300
+   """
+}
+
+
 /* 
  * Executes a BLAST job for each chunk emitted by the 'fasta_ch' channel 
  * and creates as output a channel named 'top_hits' emitting the resulting 
